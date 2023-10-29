@@ -23,6 +23,16 @@ public class GridBuilder implements Buildable {
     @Override
     public Buildable addCody(Cody cody) throws Exception {
         doubleCheck(cody.getPosition());
+        // check any existing cody
+        for (int i = 0; i < this.grid.getHeight(); i++) {
+            for (int j = 0; j < this.grid.getWidth(); j++) {
+                Item item = this.grid.getGrid()[i][j];
+                if(item != null) {
+                    if (item instanceof Cody)
+                        throw new Exception("Double instance of cody detected at [" + i + "]" + "[" + j + "]");
+                }
+            }
+        }
         this.grid.placeItem(cody);
         return this;
     }
@@ -37,6 +47,16 @@ public class GridBuilder implements Buildable {
     @Override
     public Buildable addTreasury(Treasury treasury) throws Exception {
         doubleCheck(treasury.getPosition());
+        // check any existing treasury
+        for (int i = 0; i < this.grid.getHeight(); i++) {
+            for (int j = 0; j < this.grid.getWidth(); j++) {
+                Item item = this.grid.getGrid()[i][j];
+                if(item != null) {
+                    if (item instanceof Treasury)
+                        throw new Exception("Double instance of treasury detected at [" + i + "]" + "[" + j + "]");
+                }
+            }
+        }
         this.grid.placeItem(treasury);
         return this;
     }
@@ -65,6 +85,7 @@ public class GridBuilder implements Buildable {
         return this;
     }
 
+    @Override
     public Grid build(){
         return this.grid;
     }

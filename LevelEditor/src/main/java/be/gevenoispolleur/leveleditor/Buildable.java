@@ -17,4 +17,5 @@ public interface Buildable {
     Buildable addObstacle(Obstacle obstacle) throws Exception;
     Buildable addTunnel(Tunnel tunnel) throws Exception;
     Buildable addSurfaceElement(SurfaceElement surfaceElement) throws Exception;
+    Grid build();
 }
